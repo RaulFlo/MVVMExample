@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onChanged(List<Note> notes) {
                 //update RecyclerView. Every time onChanged is triggered which is every time the data in the table changes
-                adapter.setNotes(notes);
+                adapter.submitList(notes);
             }
         });
 
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         }).attachToRecyclerView(recyclerView);
 
 
-        adapter.setOnItemClickListener(new NoteAdapter.OnItemClickListerner() {
+        adapter.setOnItemClickListener(new NoteAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(Note note) {
                 Intent  intent = new Intent(MainActivity.this, AddEditNoteActivity.class);
