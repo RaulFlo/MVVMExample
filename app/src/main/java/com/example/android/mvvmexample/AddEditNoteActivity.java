@@ -9,8 +9,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.NumberPicker;
 import android.widget.Toast;
+
+import com.shawnlin.numberpicker.NumberPicker;
 
 public class AddEditNoteActivity extends AppCompatActivity {
     public static final String EXTRA_ID =
@@ -25,6 +26,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
 
     private EditText editTextTitle;
     private EditText editTextDescription;
+//    private NumberPicker numberPickerPriority;
     private NumberPicker numberPickerPriority;
 
 
@@ -39,6 +41,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
         //number picker min/max
         numberPickerPriority.setMinValue(1);
         numberPickerPriority.setMaxValue(10);
+        numberPickerPriority.getOrientation();
 
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
 
