@@ -1,17 +1,19 @@
 package com.example.android.mvvmexample;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
 
@@ -50,6 +52,31 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
         holder.textViewTitle.setText(currentNote.getTitle());
         holder.textViewDescription.setText(currentNote.getDescription());
         holder.textViewPriority.setText(String.valueOf(currentNote.getPriority()));
+
+
+        switch (currentNote.getPriority()) {
+            case 1:
+            case 2:
+            case 3:
+                holder.itemView.setBackgroundColor(Color.GREEN);
+                return;
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+                holder.itemView.setBackgroundColor(Color.YELLOW);
+                return;
+            case 8:
+            case 9:
+            case 10:
+                holder.itemView.setBackgroundColor(Color.RED);
+                return;
+            default:
+                holder.itemView.setBackgroundColor(Color.GRAY);
+                return;
+        }
+
+
     }
 
 
