@@ -11,40 +11,40 @@ public class NoteRepository {
     private NoteDao noteDao;
     private LiveData<List<Note>> allNotes;
 
-    public NoteRepository (Application application){
+    public NoteRepository(Application application) {
         NoteDatabase database = NoteDatabase.getInstance(application);
         noteDao = database.noteDao();
         allNotes = noteDao.getAllNotes();
 
     }
 
-    public void insert(Note note){
+    public void insert(Note note) {
         new InsertNoteAsyncTask(noteDao).execute(note);
     }
 
-    public void update(Note note){
+    public void update(Note note) {
         new UpdateNoteAsyncTask(noteDao).execute(note);
     }
 
-    public void delete(Note note ){
+    public void delete(Note note) {
         new DeleteNoteAsyncTask(noteDao).execute(note);
     }
 
-    public void deleteAllNotes(){
+    public void deleteAllNotes() {
         new DeleteAllNoteAsyncTask(noteDao).execute();
     }
 
-    public LiveData<List<Note>> getAllNotes(){
+    public LiveData<List<Note>> getAllNotes() {
         return allNotes;
     }
 
 
     //AsyncTask for each method
 
-    private static class InsertNoteAsyncTask extends AsyncTask<Note,Void, Void>{
+    private static class InsertNoteAsyncTask extends AsyncTask<Note, Void, Void> {
         private NoteDao noteDao;
 
-        private InsertNoteAsyncTask(NoteDao noteDao){
+        private InsertNoteAsyncTask(NoteDao noteDao) {
             this.noteDao = noteDao;
         }
 
@@ -55,10 +55,10 @@ public class NoteRepository {
         }
     }
 
-    private static class UpdateNoteAsyncTask extends AsyncTask<Note,Void, Void>{
+    private static class UpdateNoteAsyncTask extends AsyncTask<Note, Void, Void> {
         private NoteDao noteDao;
 
-        private UpdateNoteAsyncTask(NoteDao noteDao){
+        private UpdateNoteAsyncTask(NoteDao noteDao) {
             this.noteDao = noteDao;
         }
 
@@ -69,10 +69,10 @@ public class NoteRepository {
         }
     }
 
-    private static class DeleteNoteAsyncTask extends AsyncTask<Note,Void, Void>{
+    private static class DeleteNoteAsyncTask extends AsyncTask<Note, Void, Void> {
         private NoteDao noteDao;
 
-        private DeleteNoteAsyncTask(NoteDao noteDao){
+        private DeleteNoteAsyncTask(NoteDao noteDao) {
             this.noteDao = noteDao;
         }
 
@@ -83,10 +83,10 @@ public class NoteRepository {
         }
     }
 
-    private static class DeleteAllNoteAsyncTask extends AsyncTask<Void,Void, Void>{
+    private static class DeleteAllNoteAsyncTask extends AsyncTask<Void, Void, Void> {
         private NoteDao noteDao;
 
-        private DeleteAllNoteAsyncTask(NoteDao noteDao){
+        private DeleteAllNoteAsyncTask(NoteDao noteDao) {
             this.noteDao = noteDao;
         }
 

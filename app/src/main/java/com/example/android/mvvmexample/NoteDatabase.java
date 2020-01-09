@@ -16,8 +16,8 @@ public abstract class NoteDatabase extends RoomDatabase {
 
     public abstract NoteDao noteDao();
 
-    public static synchronized NoteDatabase getInstance(Context context){
-        if(instance == null){
+    public static synchronized NoteDatabase getInstance(Context context) {
+        if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     NoteDatabase.class, "note_database")
                     .fallbackToDestructiveMigration()
@@ -28,7 +28,7 @@ public abstract class NoteDatabase extends RoomDatabase {
     }
 
     //to override the on create to populate the db when first called
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback(){
+    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
@@ -36,19 +36,20 @@ public abstract class NoteDatabase extends RoomDatabase {
         }
     };
 
-    private static class PopulateDbAsyncTask extends AsyncTask<Void,Void,Void>{
+    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
 
 
-        private  NoteDao noteDao;
+        private NoteDao noteDao;
 
-        private  PopulateDbAsyncTask(NoteDatabase db){
+        private PopulateDbAsyncTask(NoteDatabase db) {
             noteDao = db.noteDao();
         }
+
         @Override
         protected Void doInBackground(Void... voids) {
-            noteDao.insert(new Note("Title 1"," Description 1",1));
-            noteDao.insert(new Note("Title 2"," Description 2",2));
-            noteDao.insert(new Note("Title 3"," Description 3",3));
+            noteDao.insert(new Note("Title 1", " Description 1", 1));
+            noteDao.insert(new Note("Title 2", " Description 2", 2));
+            noteDao.insert(new Note("Title 3", " Description 3", 3));
             return null;
         }
     }
