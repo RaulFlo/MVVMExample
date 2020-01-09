@@ -2,6 +2,7 @@ package com.example.android.mvvmexample;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -143,8 +145,17 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete_all_notes_menu_item:
-                noteViewModel.deleteAllNotes();
-                Toasty.error(this,"All Notes deleted", Toasty.LENGTH_SHORT).show();
+               new AlertDialog.Builder(this).setTitle("Delete").setMessage("Delete All Notes?")
+                       .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialogInterface, int i) {
+                               noteViewModel.deleteAllNotes();
+                               Toasty.error(MainActivity.this,"All Notes deleted", Toasty.LENGTH_SHORT).show();
+                           }
+                       })
+                       .setNegativeButton("Cancel",null)
+                       .show();
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
