@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
-    app:strokeColor="@color/cardview_shadow_start_color"
+    app:cardCornerRadius="4dp"
+    app:strokeColor="@color/cardview_dark_background"
     app:strokeWidth="@dimen/cardview_default_elevation">
 
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:id="@+id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
 
         <TextView
@@ -31,14 +33,16 @@
             android:layout_toStartOf="@id/text_view_priority"
             android:ellipsize="end"
             android:maxLines="1"
+            android:paddingLeft="4dp"
             android:text="Title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
         <TextView
+            android:id="@+id/text_view_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/text_view_description"
             android:layout_below="@id/text_view_title"
-            android:text="Description"/>
+            android:text="Description" />
     </RelativeLayout>
 
 

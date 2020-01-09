@@ -1,15 +1,12 @@
 package com.example.android.mvvmexample;
 
 import android.graphics.Color;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.core.graphics.ColorUtils;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
 
+
+    private  View theRealCardViewBackground;
     private OnItemClickListener listener;
 
     public NoteAdapter() {
@@ -43,6 +42,7 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
     public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.note_item, parent, false);
+        theRealCardViewBackground = itemView.findViewById(R.id.relative_layout);
         return new NoteHolder(itemView);
     }
 
@@ -58,21 +58,21 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
             case 1:
             case 2:
             case 3:
-                holder.itemView.setBackgroundColor(Color.GREEN);
+                theRealCardViewBackground.setBackgroundColor(Color.GREEN);
                 return;
             case 4:
             case 5:
             case 6:
             case 7:
-                holder.itemView.setBackgroundColor(Color.YELLOW);
+                theRealCardViewBackground.setBackgroundColor(Color.YELLOW);
                 return;
             case 8:
             case 9:
             case 10:
-                holder.itemView.setBackgroundColor(Color.RED);
+                theRealCardViewBackground.setBackgroundColor(Color.RED);
                 return;
             default:
-                holder.itemView.setBackgroundColor(Color.GRAY);
+                theRealCardViewBackground.setBackgroundColor(Color.GRAY);
                 return;
         }
 
@@ -117,4 +117,6 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
+
+
 }
