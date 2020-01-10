@@ -86,6 +86,10 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
         return getItem(position);
     }
 
+    public Note getNote(Note note){
+        return note;
+    }
+
     class NoteHolder extends RecyclerView.ViewHolder {
         private TextView textViewTitle;
         private TextView textViewDescription;

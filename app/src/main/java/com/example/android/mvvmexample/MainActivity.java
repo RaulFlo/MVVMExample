@@ -20,6 +20,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //reference to the RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.recycler_view);
+        final RecyclerView recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         //Adapter link to RecyclerView
@@ -74,8 +75,25 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                noteViewModel.delete(adapter.getNoteAt(viewHolder.getAdapterPosition()));
-                Toasty.error(MainActivity.this,"Note Deleted", Toasty.LENGTH_SHORT).show();
+                //noteViewModel.delete(adapter.getNoteAt(viewHolder.getAdapterPosition()));
+
+                final int position = viewHolder.getAdapterPosition();
+                final Note recoverItem = adapter.getNoteAt(position);
+                noteViewModel.delete(adapter.getNoteAt(position));
+
+
+                Snackbar snackbar = Snackbar.make(recyclerView, "Note Removed", Snackbar.LENGTH_LONG)
+                        .setAction("UNDO", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                noteViewModel.insert(adapter.getNote(recoverItem));
+                            }
+                        });
+
+                snackbar.show();
+
+
+
             }
         }).attachToRecyclerView(recyclerView);
 
@@ -145,16 +163,16 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.delete_all_notes_menu_item:
-               new AlertDialog.Builder(this).setTitle("Delete").setMessage("Delete All Notes?")
-                       .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                           @Override
-                           public void onClick(DialogInterface dialogInterface, int i) {
-                               noteViewModel.deleteAllNotes();
-                               Toasty.error(MainActivity.this,"All Notes deleted", Toasty.LENGTH_SHORT).show();
-                           }
-                       })
-                       .setNegativeButton("Cancel",null)
-                       .show();
+                new AlertDialog.Builder(this).setTitle("Delete").setMessage("Delete All Notes?")
+                        .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                noteViewModel.deleteAllNotes();
+                                Toasty.error(MainActivity.this, "All Notes deleted", Toasty.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
 
                 return true;
             default:
