@@ -40,5 +40,7 @@ dependencies {
 
     //numberpicker lib
     implementation 'com.shawnlin:number-picker:2.4.8'
+    //SwipeDecorator
+    implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.2'
 
 }
