@@ -16,8 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
 
 
-    private View theRealCardViewBackground;
-    private OnItemClickListener listener;
+    private static OnItemClickListener listener;
 
     public NoteAdapter() {
 
@@ -43,7 +42,6 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
     public NoteHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.note_item, parent, false);
-        theRealCardViewBackground = itemView.findViewById(R.id.relative_layout);
         return new NoteHolder(itemView);
     }
 
@@ -59,21 +57,21 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
             case 1:
             case 2:
             case 3:
-                theRealCardViewBackground.setBackgroundColor(Color.GREEN);
+                holder.colorBackground.setBackgroundColor(Color.GREEN);
                 return;
             case 4:
             case 5:
             case 6:
             case 7:
-                theRealCardViewBackground.setBackgroundColor(Color.YELLOW);
+                holder.colorBackground.setBackgroundColor(Color.YELLOW);
                 return;
             case 8:
             case 9:
             case 10:
-                theRealCardViewBackground.setBackgroundColor(Color.RED);
+                holder.colorBackground.setBackgroundColor(Color.RED);
                 return;
             default:
-                theRealCardViewBackground.setBackgroundColor(Color.GRAY);
+                holder.colorBackground.setBackgroundColor(Color.GRAY);
                 return;
         }
 
@@ -86,7 +84,7 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
         return getItem(position);
     }
 
-    public Note getNote(Note note){
+    public Note getNote(Note note) {
         return note;
     }
 
@@ -94,12 +92,14 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
         private TextView textViewTitle;
         private TextView textViewDescription;
         private TextView textViewPriority;
+        private View colorBackground;
 
         public NoteHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.text_view_title);
             textViewDescription = itemView.findViewById(R.id.text_view_description);
             textViewPriority = itemView.findViewById(R.id.text_view_priority);
+            colorBackground = itemView.findViewById(R.id.relative_layout);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

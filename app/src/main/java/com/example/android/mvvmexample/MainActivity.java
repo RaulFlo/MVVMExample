@@ -75,25 +75,18 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                //noteViewModel.delete(adapter.getNoteAt(viewHolder.getAdapterPosition()));
-
                 final int position = viewHolder.getAdapterPosition();
-                final Note recoverItem = adapter.getNoteAt(position);
+                final Note lastNote = adapter.getNoteAt(position);
                 noteViewModel.delete(adapter.getNoteAt(position));
-
 
                 Snackbar snackbar = Snackbar.make(recyclerView, "Note Removed", Snackbar.LENGTH_LONG)
                         .setAction("UNDO", new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                noteViewModel.insert(adapter.getNote(recoverItem));
+                                noteViewModel.insert(lastNote);
                             }
                         });
-
                 snackbar.show();
-
-
-
             }
         }).attachToRecyclerView(recyclerView);
 
