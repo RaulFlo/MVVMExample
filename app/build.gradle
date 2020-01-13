@@ -42,5 +42,7 @@ dependencies {
     implementation 'com.shawnlin:number-picker:2.4.8'
     //SwipeDecorator
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.2'
+    //splash screen
+    implementation 'gr.pantrif:easy-android-splash-screen:0.0.1'
 
 }
