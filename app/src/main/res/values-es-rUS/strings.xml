@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Que Hacer</string>
+    <string name="string_description">Descripción</string>
+    <string name="string_title">" Título"</string>
+    <string name="string_priority">" Prioridad"</string>
+</resources>
