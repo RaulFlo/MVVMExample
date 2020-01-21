@@ -44,5 +44,7 @@ dependencies {
     implementation 'it.xabaras.android:recyclerview-swipedecorator:1.2.2'
     //splash screen
     implementation 'gr.pantrif:easy-android-splash-screen:0.0.1'
+    //alerter
+    implementation 'com.tapadoo.android:alerter:2.0.4'
 
 }

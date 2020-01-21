@@ -24,6 +24,9 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.tapadoo.alerter.Alerter;
+import com.tapadoo.alerter.OnHideAlertListener;
+import com.tapadoo.alerter.OnShowAlertListener;
 
 import java.util.List;
 
@@ -178,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 noteViewModel.deleteAllNotes();
-                                Toasty.error(MainActivity.this, "All Notes deleted", Toasty.LENGTH_SHORT).show();
+                                showAlerter();
                             }
                         })
                         .setNegativeButton("Cancel", null)
@@ -190,5 +193,18 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    public void showAlerter() {
+        Alerter.create(this)
+                .setTitle("Alert")
+                .setText("All Notes Deleted")
+                .setIcon(R.drawable.ic_notifications)
+                .setBackgroundColorRes(R.color.colorAccent)
+                .setDuration(3000)
+                .enableSwipeToDismiss() //seems to not work well with OnClickListener
+                .enableProgress(true)
+                .setProgressColorRes(R.color.colorPrimary)
+                .show();
     }
 }
