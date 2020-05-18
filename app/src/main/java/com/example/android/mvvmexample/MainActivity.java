@@ -4,13 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,15 +20,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.tapadoo.alerter.Alerter;
-import com.tapadoo.alerter.OnHideAlertListener;
-import com.tapadoo.alerter.OnShowAlertListener;
-
 import java.util.List;
+import java.util.Objects;
 
 import es.dmoral.toasty.Toasty;
 import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator;
@@ -134,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
-            String title = data.getStringExtra(AddEditNoteActivity.EXTRA_TITLE);
+            String title = Objects.requireNonNull(data).getStringExtra(AddEditNoteActivity.EXTRA_TITLE);
             String description = data.getStringExtra(AddEditNoteActivity.EXTRA_DESCRIPTION);
             int priority = data.getIntExtra(AddEditNoteActivity.EXTRA_PRIORITY, 1);
 
@@ -143,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
             Toasty.success(this, "Note Saved", Toasty.LENGTH_SHORT).show();
 
         } else if (requestCode == EDIT_NOTE_REQUEST && resultCode == RESULT_OK) {
-            int id = data.getIntExtra(AddEditNoteActivity.EXTRA_ID, -1);
+            int id = Objects.requireNonNull(data).getIntExtra(AddEditNoteActivity.EXTRA_ID, -1);
 
             if (id == -1) {
                 Toasty.warning(this, "Note can't be updated", Toasty.LENGTH_SHORT).show();
@@ -188,6 +182,7 @@ public class MainActivity extends AppCompatActivity {
                         })
                         .setNegativeButton("Cancel", null)
                         .show();
+                return true;
 
             case R.id.rate_me:
                 try {

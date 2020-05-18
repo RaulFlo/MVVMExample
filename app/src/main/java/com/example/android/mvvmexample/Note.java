@@ -37,11 +37,11 @@ public class Note {
         return title;
     }
 
-    public String getDescription() {
+    String getDescription() {
         return description;
     }
 
-    public int getPriority() {
+    int getPriority() {
         return priority;
     }
 }

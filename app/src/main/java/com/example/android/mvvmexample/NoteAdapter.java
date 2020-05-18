@@ -18,9 +18,13 @@ import androidx.recyclerview.widget.RecyclerView;
 public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
 
 
-    private static OnItemClickListener listener;
 
-    public NoteAdapter() {
+    private static OnItemClickListener listener;
+    void setOnItemClickListener(OnItemClickListener listener) {
+        NoteAdapter.listener = listener;
+    }
+
+    NoteAdapter() {
 
         super(DIFF_CALLBACK);
     }
@@ -77,7 +81,6 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
                 return;
             default:
                 holder.colorBackground.setBackgroundColor(Color.GRAY);
-                return;
         }
 
 
@@ -85,12 +88,8 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
 
 
     //To get a note from the adapter to the outside. Added for swipe delete.
-    public Note getNoteAt(int position) {
+    Note getNoteAt(int position) {
         return getItem(position);
-    }
-
-    public Note getNote(Note note) {
-        return note;
     }
 
     class NoteHolder extends RecyclerView.ViewHolder {
@@ -99,7 +98,7 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
         private TextView textViewPriority;
         private View colorBackground;
 
-        public NoteHolder(@NonNull View itemView) {
+        NoteHolder(@NonNull View itemView) {
             super(itemView);
             textViewTitle = itemView.findViewById(R.id.text_view_title);
             textViewDescription = itemView.findViewById(R.id.text_view_description);
@@ -124,9 +123,7 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
         void onItemClick(Note note);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        this.listener = listener;
-    }
+
 
 
 }

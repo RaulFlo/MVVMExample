@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import com.shawnlin.numberpicker.NumberPicker;
 
+import java.util.Objects;
+
 public class AddEditNoteActivity extends AppCompatActivity {
     public static final String EXTRA_ID =
             "com.example.android.mvvmexample.EXTRA_ID";
@@ -43,7 +45,7 @@ public class AddEditNoteActivity extends AppCompatActivity {
         numberPickerPriority.setMaxValue(10);
         numberPickerPriority.getOrientation();
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_close);
+        Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.ic_close);
 
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_ID)) {
@@ -94,13 +96,11 @@ public class AddEditNoteActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.save_note:
-                saveNote();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.save_note) {
+            saveNote();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
 
     }
 
