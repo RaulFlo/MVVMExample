@@ -4,4 +4,7 @@
     <string name="string_description">Descripción</string>
     <string name="string_title">" Título"</string>
     <string name="string_priority">" Prioridad"</string>
+    <string name="title">" Título"</string>
+    <string name="_one">1</string>
+    <string name="description">" descripción"</string>
 </resources>
