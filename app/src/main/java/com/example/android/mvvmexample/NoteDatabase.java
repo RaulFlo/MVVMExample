@@ -28,7 +28,7 @@ public abstract class NoteDatabase extends RoomDatabase {
     }
 
     //to override the on create to populate the db when first called
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
+    private static final RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
@@ -39,7 +39,7 @@ public abstract class NoteDatabase extends RoomDatabase {
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
 
 
-        private NoteDao noteDao;
+        private final NoteDao noteDao;
 
         private PopulateDbAsyncTask(NoteDatabase db) {
             noteDao = db.noteDao();

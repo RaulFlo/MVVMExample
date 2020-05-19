@@ -8,8 +8,8 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 class NoteRepository {
-    private NoteDao noteDao;
-    private LiveData<List<Note>> allNotes;
+    private final NoteDao noteDao;
+    private final LiveData<List<Note>> allNotes;
 
     NoteRepository(Application application) {
         NoteDatabase database = NoteDatabase.getInstance(application);
@@ -42,7 +42,7 @@ class NoteRepository {
     //AsyncTask for each method
 
     private static class InsertNoteAsyncTask extends AsyncTask<Note, Void, Void> {
-        private NoteDao noteDao;
+        private final NoteDao noteDao;
 
         private InsertNoteAsyncTask(NoteDao noteDao) {
             this.noteDao = noteDao;
@@ -56,7 +56,7 @@ class NoteRepository {
     }
 
     private static class UpdateNoteAsyncTask extends AsyncTask<Note, Void, Void> {
-        private NoteDao noteDao;
+        private final NoteDao noteDao;
 
         private UpdateNoteAsyncTask(NoteDao noteDao) {
             this.noteDao = noteDao;
@@ -70,7 +70,7 @@ class NoteRepository {
     }
 
     private static class DeleteNoteAsyncTask extends AsyncTask<Note, Void, Void> {
-        private NoteDao noteDao;
+        private final NoteDao noteDao;
 
         private DeleteNoteAsyncTask(NoteDao noteDao) {
             this.noteDao = noteDao;
@@ -84,7 +84,7 @@ class NoteRepository {
     }
 
     private static class DeleteAllNoteAsyncTask extends AsyncTask<Void, Void, Void> {
-        private NoteDao noteDao;
+        private final NoteDao noteDao;
 
         private DeleteAllNoteAsyncTask(NoteDao noteDao) {
             this.noteDao = noteDao;

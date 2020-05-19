@@ -5,18 +5,18 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "note_table")
-public class Note {
+class Note {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private String title;
+    private final String title;
 
-    private String description;
+    private final String description;
 
     //to change the name in the table
     @ColumnInfo(name = "priority_column")
-    private int priority;
+    private final int priority;
 
 
     public Note(String title, String description, int priority) {

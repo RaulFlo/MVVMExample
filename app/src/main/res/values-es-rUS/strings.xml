@@ -7,4 +7,8 @@
     <string name="title">" Título"</string>
     <string name="_one">1</string>
     <string name="description">" descripción"</string>
+    <string name="rate_me"> Califícame</string>
+    <string name="delete_all_notes">Borrar todas las notas</string>
+    <string name="save">Salvar</string>
+
 </resources>

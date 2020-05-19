@@ -93,10 +93,10 @@ public class NoteAdapter extends ListAdapter<Note, NoteAdapter.NoteHolder> {
     }
 
     class NoteHolder extends RecyclerView.ViewHolder {
-        private TextView textViewTitle;
-        private TextView textViewDescription;
-        private TextView textViewPriority;
-        private View colorBackground;
+        private final TextView textViewTitle;
+        private final TextView textViewDescription;
+        private final TextView textViewPriority;
+        private final View colorBackground;
 
         NoteHolder(@NonNull View itemView) {
             super(itemView);

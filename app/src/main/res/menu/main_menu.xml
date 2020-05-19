@@ -4,11 +4,11 @@
 
     <item
         android:id="@+id/delete_all_notes_menu_item"
-        android:title="Delete all notes"
+        android:title="@string/delete_all_notes"
         app:showAsAction="never"/>
     <item
         android:id="@+id/rate_me"
-        android:title="Rate Me"
+        android:title="@string/rate_me"
         app:showAsAction="never"/>
 
 </menu>

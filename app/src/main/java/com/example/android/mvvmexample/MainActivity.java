@@ -31,8 +31,8 @@ import it.xabaras.android.recyclerview.swipedecorator.RecyclerViewSwipeDecorator
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final int ADD_NOTE_REQUEST = 1;
-    public static final int EDIT_NOTE_REQUEST = 2;
+    private static final int ADD_NOTE_REQUEST = 1;
+    private static final int EDIT_NOTE_REQUEST = 2;
 
     private NoteViewModel noteViewModel;
 
@@ -201,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void showAlerter() {
+    private void showAlerter() {
         Alerter.create(this)
                 .setTitle("Alert")
                 .setText("All Notes Deleted")
