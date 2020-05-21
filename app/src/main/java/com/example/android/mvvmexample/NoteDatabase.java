@@ -12,6 +12,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 @Database(entities = {Note.class}, version = 1)
 public abstract class NoteDatabase extends RoomDatabase {
 
+    public static final String DATABASE_NAME = "note_database";
+
     private static NoteDatabase instance;
 
     public abstract NoteDao noteDao();
@@ -19,7 +21,7 @@ public abstract class NoteDatabase extends RoomDatabase {
     static synchronized NoteDatabase getInstance(Context context) {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
-                    NoteDatabase.class, "note_database")
+                    NoteDatabase.class, DATABASE_NAME)
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
